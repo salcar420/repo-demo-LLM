@@ -1,0 +1,13 @@
+Modelo,Categoria,Prompt,Latencia_TTFT(s),Total_Time(s),Tokens_Seg(t/s),RAM_Usada(MB),Tokens_Total
+llama3,Creatividad,Escribe un poema corto sobre el silencio en el espacio.,19.1477,40.0840,3.14,3178.52,126
+llama3,Razonamiento,"Tengo 5 camisas secándose al sol y tardan 2 horas. Si pongo 10 camisas, ¿cuánto tardan? Explica tu lógica.",0.9077,48.9842,5.74,-3.30,281
+llama3,Coding,Escribe una función simple en Python para detectar si una palabra es un palíndromo.,1.7153,39.2111,5.61,-16.56,220
+llama3,Resumen,Resume el siguiente texto en una frase: 'La inteligencia artificial es una rama de la informática que busca simular la inteligencia humana en máquinas.',0.8674,4.8774,5.13,9.45,25
+mistral,Creatividad,Escribe un poema corto sobre el silencio en el espacio.,20.5796,57.5607,3.91,-775.75,225
+mistral,Razonamiento,"Tengo 5 camisas secándose al sol y tardan 2 horas. Si pongo 10 camisas, ¿cuánto tardan? Explica tu lógica.",0.7260,69.4946,6.00,21.23,417
+mistral,Coding,Escribe una función simple en Python para detectar si una palabra es un palíndromo.,1.3294,28.2053,5.99,-3.57,169
+mistral,Resumen,Resume el siguiente texto en una frase: 'La inteligencia artificial es una rama de la informática que busca simular la inteligencia humana en máquinas.',0.7822,5.0273,5.97,1.94,30
+gemma:7b,Creatividad,Escribe un poema corto sobre el silencio en el espacio.,26.7033,43.6738,1.58,1751.00,69
+gemma:7b,Razonamiento,"Tengo 5 camisas secándose al sol y tardan 2 horas. Si pongo 10 camisas, ¿cuánto tardan? Explica tu lógica.",1.6121,15.2602,3.74,-214.49,57
+gemma:7b,Coding,Escribe una función simple en Python para detectar si una palabra es un palíndromo.,3.0130,65.6804,3.76,264.77,247
+gemma:7b,Resumen,Resume el siguiente texto en una frase: 'La inteligencia artificial es una rama de la informática que busca simular la inteligencia humana en máquinas.',6.2539,9.6742,1.55,78.25,15
