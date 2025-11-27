@@ -1,14 +1,13 @@
 import time
 import ollama
 import csv
-import psutil  # <--- NUEVO: Para medir memoria RAM y CPU
+import psutil  
 import os
 
-# --- 1. CONFIGURACIÓN PROFESIONAL ---
+
 modelos = ['llama3', 'mistral', 'gemma:7b']
 
-# --- AHORA LOS PROMPTS TIENEN CATEGORÍA ---
-# Esto te permitirá hacer gráficos por "Habilidad" en Excel
+
 prompts_data = [
     {
         "categoria": "Creatividad",
@@ -30,12 +29,12 @@ prompts_data = [
 
 archivo_csv = 'benchmark_pro.csv'
 
-# Función para obtener uso de RAM en MB
+
 def obtener_uso_ram():
     process = psutil.Process(os.getpid())
-    return process.memory_info().rss / 1024 / 1024  # Convertir a MB
+    return process.memory_info().rss / 1024 / 1024  
 
-# --- 2. FUNCIÓN PRINCIPAL ---
+
 def correr_benchmark():
     print(f"🚀 Iniciando Benchmark PROFESIONAL de {len(modelos)} modelos...")
     print(f"🧪 Se evaluarán {len(prompts_data)} categorías por modelo.")
@@ -43,7 +42,7 @@ def correr_benchmark():
 
     with open(archivo_csv, mode='w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
-        # --- NUEVAS COLUMNAS: Categoría, RAM y CPU ---
+       
         writer.writerow(['Modelo', 'Categoria', 'Prompt', 'Latencia_TTFT(s)', 'Total_Time(s)', 'Tokens_Seg(t/s)', 'RAM_Usada(MB)', 'Tokens_Total'])
         
         print(f"{'MODELO':<12} | {'CATEGORIA':<12} | {'VELOCIDAD':<10} | {'RAM (MB)':<10} | {'ESTADO'}")
@@ -55,13 +54,11 @@ def correr_benchmark():
                 prompt = item['prompt']
                 
                 try:
-                    # Medimos RAM antes de empezar
+                   
                     ram_inicio = psutil.virtual_memory().used / (1024 * 1024)
                     
                     start_time = time.time()
-                    
-                    # --- CONFIGURACIÓN AVANZADA ---
-                    # options={'temperature': 0} hace que el modelo sea más lógico y menos "loco"
+               
                     response = ollama.chat(
                         model=modelo, 
                         messages=[{'role': 'user', 'content': prompt}], 
@@ -79,16 +76,16 @@ def correr_benchmark():
                     
                     end_time = time.time()
                     
-                    # Medimos RAM al final (aproximación del pico de carga del sistema)
+                    
                     ram_fin = psutil.virtual_memory().used / (1024 * 1024)
                     ram_delta = ram_fin - ram_inicio # Cuánto subió la RAM
                     
-                    # Cálculos
+                
                     ttft = first_token_time - start_time if first_token_time else 0
                     total_time = end_time - start_time
                     tps = token_count / total_time if total_time > 0 else 0
                     
-                    # Guardamos datos enriquecidos
+              
                     writer.writerow([
                         modelo, 
                         categoria, 
@@ -96,7 +93,7 @@ def correr_benchmark():
                         f"{ttft:.4f}", 
                         f"{total_time:.4f}", 
                         f"{tps:.2f}", 
-                        f"{ram_delta:.2f}", # Nueva métrica
+                        f"{ram_delta:.2f}", 
                         token_count
                     ])
                     
